@@ -45,7 +45,7 @@ parts:
     plugin: nil
     source: https://github.com/NickvisionApps/Tagger.git
     source-tag: '2023.7.0-beta2'
-    source-depth: 1
+    source-depth: 2
     build-packages:
       - blueprint-compiler
       - wget
