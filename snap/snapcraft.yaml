@@ -44,7 +44,7 @@ parts:
     # See 'snapcraft plugins'
     plugin: nil
     source: https://github.com/NickvisionApps/Tagger.git
-    source-tag: '2023.8.0-beta1'
+    source-tag: '2023.8.0-rc1'
     source-depth: 1
     build-packages:
       - blueprint-compiler
@@ -55,7 +55,6 @@ parts:
       chmod +x ./dotnet-install.sh
       ./dotnet-install.sh --channel 7.0
       patch -p1 < $CRAFT_PROJECT_DIR/snap/patches/tagger.patch
-      patch -p1 < $CRAFT_PROJECT_DIR/snap/patches/web-help.patch
     override-build: |
       export DOTNET_ROOT=$HOME/.dotnet
       export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools:$HOME/.cargo/bin
