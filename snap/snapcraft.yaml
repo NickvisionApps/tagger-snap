@@ -1,10 +1,11 @@
-name: tagger # you probably want to 'snapcraft register <name>'
-base: core22 # the base snap is the execution environment for this snap
+name: tagger
+base: core22
 adopt-info: tagger
 source-code: https://github.com/NickvisionApps/Tagger
 issues: https://github.com/NickvisionApps/Tagger/issues
-grade: stable # must be 'stable' to release into candidate/stable channels
-confinement: strict # use 'strict' once you have the right plugs and slots
+donation: https://github.com/sponsors/nlogozzo
+grade: stable 
+confinement: strict
 architectures:
   - build-on: amd64
   - build-on: arm64
