@@ -4,6 +4,7 @@ adopt-info: tagger
 source-code: https://github.com/NickvisionApps/Tagger
 issues: https://github.com/NickvisionApps/Tagger/issues
 donation: https://github.com/sponsors/nlogozzo
+contact: https://matrix.to/#/#nickvision:matrix.org
 grade: stable 
 confinement: strict
 architectures:
