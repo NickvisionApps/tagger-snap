@@ -46,7 +46,7 @@ parts:
     # See 'snapcraft plugins'
     plugin: nil
     source: https://github.com/NickvisionApps/Tagger.git
-    source-tag: '2023.9.2-beta1'
+    source-tag: '2023.10.0-beta1'
     source-depth: 1
     build-packages:
       - blueprint-compiler
