@@ -14,6 +14,7 @@ architectures:
 
 parts:
   blueprint-compiler:
+    source-depth: 1
     source: https://gitlab.gnome.org/jwestman/blueprint-compiler.git
     source-tag: 'v0.10.0'
     plugin: meson
