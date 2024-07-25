@@ -24,11 +24,11 @@ parts:
       - PKG_CONFIG_PATH: /snap/ffmpeg-2404-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pkgconfig:$PKG_CONFIG_PATH
       - PATH: /snap/ffmpeg-2404-sdk/current/usr/bin:$PATH
       - LD_LIBRARY_PATH: /snap/ffmpeg-2404-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$LD_LIBRARY_PATH
+      - CMAKE_PREFIX_PATH: /snap/ffmpeg-2404-sdk/current/usr${CMAKE_PREFIX_PATH:+:$CMAKE_PREFIX_PATH}
     override-pull: |
       craftctl default
       patch -p1 < $CRAFT_PROJECT_DIR/snap/patches/01_libchromaprint_ffmpeg.patch
       patch -p1 < $CRAFT_PROJECT_DIR/snap/patches/02_libchromaprint_ffmpeg.patch
-      patch -p1 < $CRAFT_PROJECT_DIR/snap/patches/03_libchromaprint_ffmpeg.patch
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_TOOLS=ON
@@ -47,7 +47,7 @@ parts:
     build-packages:
       - wget
     build-snaps:
-      - blueprint-compiler/latest/beta
+      - blueprint-compiler/latest/edge
     build-environment:
       - DOTNET_CLI_TELEMETRY_OPTOUT: '1'
       - PATH: $HOME/.dotnet:$HOME/.dotnet/tools:$HOME/.cargo/bin:$PATH
