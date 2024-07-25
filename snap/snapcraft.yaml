@@ -1,16 +1,12 @@
 name: tagger
-base: core22
+base: core24
 adopt-info: tagger
-source-code: https://github.com/NickvisionApps/Tagger
-issues: https://github.com/NickvisionApps/Tagger/issues
-donation: https://github.com/sponsors/nlogozzo
-contact: https://matrix.to/#/#nickvision:matrix.org
 grade: stable 
 confinement: strict
-architectures:
-  - build-on: amd64
-  - build-on: arm64
-  - build-on: armhf
+platforms:
+  amd64:
+  arm64:
+  armhf:
 
 parts:
   chromaprint:
@@ -22,11 +18,12 @@ parts:
 #   version-format:
 #     ignore: true
     build-snaps:
-      - ffmpeg-2204-sdk
+      - ffmpeg-2404-sdk/latest/candidate
+      - ffmpeg-2404/latest/candidate
     build-environment:
-      - PKG_CONFIG_PATH: /snap/ffmpeg-2204-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET/pkgconfig:$PKG_CONFIG_PATH
-      - PATH: /snap/ffmpeg-2204-sdk/current/usr/bin:$PATH
-      - LD_LIBRARY_PATH: /snap/ffmpeg-2204-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET:$LD_LIBRARY_PATH
+      - PKG_CONFIG_PATH: /snap/ffmpeg-2404-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pkgconfig:$PKG_CONFIG_PATH
+      - PATH: /snap/ffmpeg-2404-sdk/current/usr/bin:$PATH
+      - LD_LIBRARY_PATH: /snap/ffmpeg-2404-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$LD_LIBRARY_PATH
     override-pull: |
       craftctl default
       patch -p1 < $CRAFT_PROJECT_DIR/snap/patches/01_libchromaprint_ffmpeg.patch
@@ -43,7 +40,6 @@ parts:
 
   tagger:
     after: [ chromaprint ]
-    # See 'snapcraft plugins'
     plugin: nil
     source: https://github.com/NickvisionApps/Tagger.git
     source-tag: '2024.6.0-1'
@@ -83,10 +79,10 @@ slots:
     bus: session
     name: org.nickvision.tagger
 plugs:
-  ffmpeg-2204:
+  ffmpeg-2404:
     interface: content
     target: ffmpeg-platform
-    default-provider: ffmpeg-2204
+    default-provider: ffmpeg-2404
 
 apps:
   tagger:
@@ -95,7 +91,7 @@ apps:
     common-id: org.nickvision.tagger
     environment:
       PATH: $SNAP/ffmpeg-platform/usr/bin:$PATH
-      LD_LIBRARY_PATH: $SNAP/ffmpeg-platform/usr/lib/$CRAFT_ARCH_TRIPLET:$LD_LIBRARY_PATH
+      LD_LIBRARY_PATH: $SNAP/ffmpeg-platform/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$LD_LIBRARY_PATH
     plugs:
       - home
       - network
