@@ -17,9 +17,10 @@ parts:
 # ext:updatesnap
 #   version-format:
 #     ignore: true
+    build-packages:
+      - libvdpau1
     build-snaps:
-      - ffmpeg-2404-sdk/latest/candidate
-      - ffmpeg-2404/latest/candidate
+      - ffmpeg-2404-sdk
     build-environment:
       - PKG_CONFIG_PATH: /snap/ffmpeg-2404-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pkgconfig:$PKG_CONFIG_PATH
       - PATH: /snap/ffmpeg-2404-sdk/current/usr/bin:$PATH
